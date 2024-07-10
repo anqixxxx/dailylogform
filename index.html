@@ -98,6 +98,7 @@
           document.getElementById('message').innerText = 'Saved successfully!';
         }).catch((error) => {
           console.error('Error writing document: ', error);
+          document.getElementById('message').innerText = 'Error saving log';
         });
       } else {
         alert('No user signed in');
