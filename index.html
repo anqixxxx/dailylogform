@@ -73,7 +73,24 @@
     <div id="message" class="message"></div>
   </div>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDf4yaXsG9ShvlAX4IVdGIPqPAypttqlPI",
+      authDomain: "pulsepals-fa684.firebaseapp.com",
+      projectId: "pulsepals-fa684",
+      storageBucket: "pulsepals-fa684.appspot.com",
+      messagingSenderId: "332323808828",
+      appId: "1:332323808828:web:926868c9d76ab22a8ac539",
+      measurementId: "G-ZLJM10C0BD" 
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
     function saveLog() {
       const date = document.getElementById('date').value;
       const heartRate = document.getElementById('heartRate').value;
@@ -112,24 +129,6 @@
         window.location.href = 'https://html-starter-six-livid.vercel.app/';
       }
     });
-  </script>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDf4yaXsG9ShvlAX4IVdGIPqPAypttqlPI",
-      authDomain: "pulsepals-fa684.firebaseapp.com",
-      projectId: "pulsepals-fa684",
-      storageBucket: "pulsepals-fa684.appspot.com",
-      messagingSenderId: "332323808828",
-      appId: "1:332323808828:web:926868c9d76ab22a8ac539",
-      measurementId: "G-ZLJM10C0BD" 
-    };
-
-    firebase.initializeApp(firebaseConfig);
   </script>
 </body>
 </html>
