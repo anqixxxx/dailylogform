@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulsePals - Daily Log</title>
+  <title>PulsePals -  Daily Log</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
@@ -27,7 +27,11 @@
       font-family: 'Great Vibes', cursive;
       color: #003366;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 0;
+    }
+    .header h1 span {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 0.8em;
     }
     .form-group {
       margin-bottom: 20px;
@@ -37,9 +41,13 @@
       display: block;
       width: 100%;
     }
+    .form-group label {
+      font-size: 1.1em;
+    }
     .form-group input {
       margin-bottom: 10px;
-      font-size: 1em;
+      font-size: 1.2em;
+      padding: 5px;
     }
     .btn {
       display: block;
@@ -70,19 +78,21 @@
       font-family: 'Times New Roman', Times, serif;
       color: #003366;
       margin-bottom: 10px;
+      font-size: 1.2em;
     }
     .data-list {
       border: 1px solid #ddd;
       padding: 10px;
       border-radius: 5px;
       background-color: #f9f9f9;
+      font-size: 1.4em;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>PulsePals - Daily Log</h1>
+      <h1>PulsePals <span>Daily Log</span></h1>
     </div>
 
     <!-- Form to enter daily log data -->
