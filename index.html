@@ -88,24 +88,19 @@
       }
 
       // Save log data to localStorage
-      const logs = JSON.parse(localStorage.getItem('healthLogs')) || {};
+      const logs = JSON.parse(localStorage.getItem('dailyLogs')) || {};
       logs[date] = {
         date: date,
         heartRate: heartRate,
         stepsTaken: stepsTaken,
         sleepHours: sleepHours
       };
-      localStorage.setItem('healthLogs', JSON.stringify(logs));
+      localStorage.setItem('dailyLogs', JSON.stringify(logs));
 
       document.getElementById('message').innerText = 'Log saved locally!';
-    });
-
-    // Optional: Load logs from localStorage on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      const logs = JSON.parse(localStorage.getItem('healthLogs')) || {};
-      console.log('Loaded logs:', logs);
     });
   </script>
 </body>
 </html>
+
 
