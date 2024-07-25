@@ -85,7 +85,7 @@
       storageBucket: "pulsepals-c211c.appspot.com",
       messagingSenderId: "475129408953",
       appId: "1:475129408953:web:1913c2d4083c1452079a68",
-      measurementId: "G-YPSX5VFFG5"
+      measurementId: "G-YPSX5VFFG5" 
     };
 
     // Initialize Firebase
@@ -93,9 +93,12 @@
 
     // Check for user authentication
     firebase.auth().onAuthStateChanged(function(user) {
+      console.log("Auth state changed:", user);
       if (!user) {
         // Redirect to login page if no user is signed in
         window.location.href = 'https://html-starter-six-livid.vercel.app/';
+      } else {
+        console.log("User is signed in:", user);
       }
     });
 
