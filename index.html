@@ -68,7 +68,7 @@
       <input type="number" id="stepsTaken" name="stepsTaken" required><br>
       <label for="sleepHours">Sleep Hours:</label>
       <input type="number" id="sleepHours" name="sleepHours" step="0.1" required><br>
-      <button type="button" class="btn" onclick="saveLog()">Save Log</button>
+      <button type="submit" class="btn">Save Log</button>
     </form>
     <div id="message" class="message"></div>
   </div>
@@ -79,19 +79,29 @@
   <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyDf4yaXsG9ShvlAX4IVdGIPqPAypttqlPI",
-      authDomain: "pulsepals-fa684.firebaseapp.com",
-      projectId: "pulsepals-fa684",
-      storageBucket: "pulsepals-fa684.appspot.com",
-      messagingSenderId: "332323808828",
-      appId: "1:332323808828:web:926868c9d76ab22a8ac539",
-      measurementId: "G-ZLJM10C0BD" 
+      apiKey: "AIzaSyAo6ziHFthGBRE3cZd8EC-Ukds8ztyMzFQ",
+      authDomain: "pulsepals-c211c.firebaseapp.com",
+      projectId: "pulsepals-c211c",
+      storageBucket: "pulsepals-c211c.appspot.com",
+      messagingSenderId: "475129408953",
+      appId: "1:475129408953:web:1913c2d4083c1452079a68",
+      measurementId: "G-YPSX5VFFG5"
     };
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-    function saveLog() {
+    // Check for user authentication
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (!user) {
+        // Redirect to login page if no user is signed in
+        window.location.href = 'https://html-starter-six-livid.vercel.app/';
+      }
+    });
+
+    document.getElementById('logForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
       const date = document.getElementById('date').value;
       const heartRate = document.getElementById('heartRate').value;
       const stepsTaken = document.getElementById('stepsTaken').value;
@@ -120,15 +130,8 @@
       } else {
         alert('No user signed in');
       }
-    }
-
-    // Initialize Firebase Authentication and check for user
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        // Redirect to login page if no user is signed in
-        window.location.href = 'https://html-starter-six-livid.vercel.app/';
-      }
     });
   </script>
 </body>
 </html>
+
