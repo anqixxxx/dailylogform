@@ -3,125 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulsePals - Daily Log</title>
+  <title>PulsePals - Log & View Data</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     body {
       font-family: 'Times New Roman', Times, serif;
+      background-color: #f4f4f4;
       margin: 0;
       padding: 0;
-      background-color: #ffffff;
     }
     .container {
       max-width: 800px;
-      margin: 50px auto;
+      margin: 30px auto;
       padding: 20px;
       background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
     }
     .header h1 {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: 'Great Vibes', cursive;
       color: #003366;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label,
-    .form-group input {
-      display: block;
-      width: 100%;
-    }
-    .form-group input {
+      font-size: 2.5em;
       margin-bottom: 10px;
-      font-size: 1em;
     }
-    .btn {
+    .header p {
+      color: #666;
+      font-size: 1.2em;
+    }
+    form label,
+    form input,
+    form button {
       display: block;
-      width: 100%;
+      margin: 10px auto;
+      font-size: 1.1em;
+      width: calc(100% - 22px);
+      max-width: 500px;
+    }
+    form input {
       padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
       background-color: #003366;
       color: #fff;
       border: none;
       border-radius: 5px;
-      text-transform: uppercase;
-      font-size: 1.2em;
+      padding: 10px 15px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    .btn:hover {
+    button:hover {
       background-color: #001a33;
     }
     .message {
       margin-top: 20px;
       font-size: 1.2em;
       color: green;
-      text-align: center;
     }
-    .data-container {
-      margin-top: 40px;
+    .dropdown-container {
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #cfe2ff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
     }
-    .data-container h2 {
-      font-family: 'Times New Roman', Times, serif;
+    .dropdown-container h2 {
+      margin: 0;
+      font-size: 1.5em;
       color: #003366;
-      margin-bottom: 10px;
     }
     .data-list {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #f9f9f9;
+      margin-top: 10px;
+      display: none;
+    }
+    .data-list p {
+      color: #333;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>PulsePals - Daily Log</h1>
+      <h1>PulsePals</h1>
+      <p>Your Health Companion</p>
     </div>
-
-    <!-- Form to enter daily log data -->
     <form id="logForm">
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
-      </div>
-      <div class="form-group">
-        <label for="heartRate">Heart Rate:</label>
-        <input type="number" id="heartRate" name="heartRate" required>
-      </div>
-      <div class="form-group">
-        <label for="stepsTaken">Steps Taken:</label>
-        <input type="number" id="stepsTaken" name="stepsTaken" required>
-      </div>
-      <div class="form-group">
-        <label for="sleepHours">Sleep Hours:</label>
-        <input type="number" id="sleepHours" name="sleepHours" step="0.1" required>
-      </div>
-      <button type="submit" class="btn">Save Log</button>
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+      <label for="heartRate">Heart Rate:</label>
+      <input type="number" id="heartRate" name="heartRate" required>
+      <label for="stepsTaken">Steps Taken:</label>
+      <input type="number" id="stepsTaken" name="stepsTaken" required>
+      <label for="sleepHours">Sleep Hours:</label>
+      <input type="number" id="sleepHours" name="sleepHours" step="0.1" required>
+      <button type="submit">Save Log</button>
+      <div id="message" class="message"></div>
     </form>
-    <div id="message" class="message"></div>
-
-    <!-- Sections to display saved logs -->
-    <div class="data-container">
-      <h2>Heart Rate Data</h2>
-      <div id="heartRateContainer" class="data-list"></div>
+    <div class="dropdown-container" id="heartRateContainer">
+      <h2>Heart Rate</h2>
+      <div class="data-list" id="heartRateData">
+        <!-- Heart Rate data will be populated here -->
+      </div>
     </div>
-    <div class="data-container">
-      <h2>Steps Taken Data</h2>
-      <div id="stepsTakenContainer" class="data-list"></div>
+    <div class="dropdown-container" id="stepsTakenContainer">
+      <h2>Steps Taken</h2>
+      <div class="data-list" id="stepsTakenData">
+        <!-- Steps Taken data will be populated here -->
+      </div>
     </div>
-    <div class="data-container">
-      <h2>Sleep Hours Data</h2>
-      <div id="sleepHoursContainer" class="data-list"></div>
+    <div class="dropdown-container" id="moodTrackerContainer">
+      <h2>Mood Tracker</h2>
+      <div class="data-list" id="moodTrackerData">
+        <!-- Mood Tracker data will be populated here -->
+      </div>
+    </div>
+    <div class="dropdown-container" id="sleepPatternContainer">
+      <h2>Sleep Pattern Tracker</h2>
+      <div class="data-list" id="sleepPatternData">
+        <!-- Sleep Pattern data will be populated here -->
+      </div>
     </div>
   </div>
 
   <script>
-    // Function to save data to localStorage
     document.getElementById('logForm').addEventListener('submit', function(event) {
       event.preventDefault();
 
@@ -136,43 +148,69 @@
       }
 
       // Save log data to localStorage
-      const logs = JSON.parse(localStorage.getItem('dailyLogs')) || {};
+      const logs = JSON.parse(localStorage.getItem('healthLogs')) || {};
       logs[date] = {
         date: date,
         heartRate: heartRate,
         stepsTaken: stepsTaken,
         sleepHours: sleepHours
       };
-      localStorage.setItem('dailyLogs', JSON.stringify(logs));
+      localStorage.setItem('healthLogs', JSON.stringify(logs));
 
       document.getElementById('message').innerText = 'Log saved locally!';
-
-      // Update displayed data
-      displayData();
     });
 
-    // Function to display saved data
-    function displayData() {
-      const logs = JSON.parse(localStorage.getItem('dailyLogs')) || {};
-
-      const heartRateContainer = document.getElementById('heartRateContainer');
-      const stepsTakenContainer = document.getElementById('stepsTakenContainer');
-      const sleepHoursContainer = document.getElementById('sleepHoursContainer');
-
-      heartRateContainer.innerHTML = '';
-      stepsTakenContainer.innerHTML = '';
-      sleepHoursContainer.innerHTML = '';
-
-      for (const date in logs) {
-        const log = logs[date];
-        heartRateContainer.innerHTML += `<p>${date}: ${log.heartRate} BPM</p>`;
-        stepsTakenContainer.innerHTML += `<p>${date}: ${log.stepsTaken} steps</p>`;
-        sleepHoursContainer.innerHTML += `<p>${date}: ${log.sleepHours} hours</p>`;
-      }
+    function getSavedData(key) {
+      const logs = JSON.parse(localStorage.getItem('healthLogs')) || {};
+      console.log('Retrieved logs from localStorage:', logs); // Debugging line
+      return Object.values(logs);
     }
 
-    // Initialize data display on page load
-    displayData();
+    function displayData(containerId, dataKey) {
+      const container = document.getElementById(containerId);
+      const dataList = document.getElementById(`${containerId}Data`);
+
+      if (!dataList) {
+        console.error(`Element with ID ${containerId}Data not found.`);
+        return;
+      }
+
+      const data = getSavedData();
+      let content = '';
+
+      data.forEach(log => {
+        content += `<p>${log.date}: ${dataKey === 'heartRate' ? log.heartRate + ' BPM' :
+          dataKey === 'stepsTaken' ? log.stepsTaken + ' steps' :
+          dataKey === 'mood' ? log.mood : log.sleepHours + ' hours'}</p>`;
+      });
+
+      dataList.innerHTML = content;
+      console.log(`Displaying ${dataKey} data:`); // Debugging line
+      console.log(content); // Debugging line
+    }
+
+    document.querySelectorAll('.dropdown-container').forEach(container => {
+      container.addEventListener('click', function() {
+        const dataList = document.getElementById(`${this.id}Data`);
+        
+        if (!dataList) {
+          console.error(`Element with ID ${this.id}Data not found.`);
+          return;
+        }
+
+        if (dataList.style.display === 'none' || dataList.style.display === '') {
+          const dataKey = this.id.replace('Container', '');
+          displayData(this.id, dataKey);
+          dataList.style.display = 'block';
+        } else {
+          dataList.style.display = 'none';
+        }
+      });
+    });
+
+    // Initial hide of data lists
+    document.querySelectorAll('.data-list').forEach(list => list.style.display = 'none');
   </script>
 </body>
 </html>
+
