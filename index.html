@@ -94,11 +94,12 @@
     // Check for user authentication
     firebase.auth().onAuthStateChanged(function(user) {
       console.log("Auth state changed:", user);
-      if (!user) {
-        // Redirect to login page if no user is signed in
-        window.location.href = 'https://html-starter-six-livid.vercel.app/';
-      } else {
+      if (user) {
         console.log("User is signed in:", user);
+        // Optionally, handle other cases for authenticated users here
+      } else {
+        console.log("No user signed in");
+        // Handle the case where the user is not signed in
       }
     });
 
@@ -115,9 +116,9 @@
         return;
       }
 
-      // Save log data to Firestore
       const user = firebase.auth().currentUser;
       if (user) {
+        // Save log data to Firestore
         const db = firebase.firestore();
         db.collection('users').doc(user.uid).collection('health_logs').doc(date).set({
           date: date,
@@ -131,9 +132,19 @@
           document.getElementById('message').innerText = 'Error saving log';
         });
       } else {
-        alert('No user signed in');
+        // Save log data to local storage
+        saveLogLocally(date, heartRate, stepsTaken, sleepHours);
+        document.getElementById('message').innerText = 'Log saved locally, please sign in to sync';
       }
     });
+
+    function saveLogLocally(date, heartRate, stepsTaken, sleepHours) {
+      const logData = { date, heartRate, stepsTaken, sleepHours };
+      // Use a unique identifier or array for multiple logs
+      let logs = JSON.parse(localStorage.getItem('dailyLogs')) || [];
+      logs.push(logData);
+      localStorage.setItem('dailyLogs', JSON.stringify(logs));
+    }
   </script>
 </body>
 </html>
