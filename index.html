@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enter Daily Log</title>
   <title>PulsePals - Daily Log</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,14 +14,12 @@
       background-color: #ffffff;
     }
     .container {
-      max-width: 600px;
       max-width: 800px;
       margin: 50px auto;
       padding: 20px;
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
-      text-align: center;
     }
     .header h1 {
       font-family: 'Times New Roman', Times, serif;
@@ -30,17 +27,12 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    form label,
-    form input,
-    form button {
     .form-group {
       margin-bottom: 20px;
     }
     .form-group label,
     .form-group input {
       display: block;
-      margin: 10px auto;
-      font-size: 1.2em;
       width: 100%;
     }
     .form-group input {
@@ -48,15 +40,11 @@
       font-size: 1em;
     }
     .btn {
-      display: inline-block;
-      padding: 10px 20px;
       display: block;
       width: 100%;
       padding: 10px;
       background-color: #003366;
       color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
       border: none;
       border-radius: 5px;
       text-transform: uppercase;
@@ -92,20 +80,11 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>Enter Daily Log</h1>
       <h1>PulsePals - Daily Log</h1>
     </div>
 
     <!-- Form to enter daily log data -->
     <form id="logForm">
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required><br>
-      <label for="heartRate">Heart Rate:</label>
-      <input type="number" id="heartRate" name="heartRate" required><br>
-      <label for="stepsTaken">Steps Taken:</label>
-      <input type="number" id="stepsTaken" name="stepsTaken" required><br>
-      <label for="sleepHours">Sleep Hours:</label>
-      <input type="number" id="sleepHours" name="sleepHours" step="0.1" required><br>
       <div class="form-group">
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
@@ -150,10 +129,12 @@
       const heartRate = document.getElementById('heartRate').value;
       const stepsTaken = document.getElementById('stepsTaken').value;
       const sleepHours = document.getElementById('sleepHours').value;
+
       if (!date || !heartRate || !stepsTaken || !sleepHours) {
         alert('Please fill in all fields');
         return;
       }
+
       // Save log data to localStorage
       const logs = JSON.parse(localStorage.getItem('dailyLogs')) || {};
       logs[date] = {
@@ -192,6 +173,10 @@
 
     // Initialize data display on page load
     displayData();
+
+    // Add a check to confirm that displayData() is called
+    console.log("Display data function initialized");
   </script>
 </body>
 </html>
+
