@@ -21,19 +21,11 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
     }
-    .header {
+    .header h1 {
+      font-family: 'Times New Roman', Times, serif;
+      color: #003366;
       text-align: center;
       margin-bottom: 20px;
-    }
-    .header h1 {
-      font-family: 'Great Vibes', cursive;
-      color: #003366;
-      margin-bottom: 10px;
-    }
-    .header img {
-      width: 50px;
-      height: auto;
-      margin-bottom: 10px;
     }
     .form-group {
       margin-bottom: 20px;
@@ -83,22 +75,12 @@
       border-radius: 5px;
       background-color: #f9f9f9;
     }
-    .heart {
-      color: #ff69b4; /* Pink heart color */
-      font-size: 1.5em;
-      vertical-align: middle;
-    }
-    .data-list p {
-      font-size: 1.1em;
-      margin: 5px 0;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>PulsePals - Daily Log</h1>
-      <img src="https://image.shutterstock.com/image-vector/pink-heart-260nw-1192866743.jpg" alt="Heart Icon">
     </div>
 
     <!-- Form to enter daily log data -->
@@ -125,15 +107,15 @@
 
     <!-- Sections to display saved logs -->
     <div class="data-container">
-      <h2><span class="heart">❤️</span> Heart Rate Data</h2>
+      <h2>Heart Rate Data</h2>
       <div id="heartRateContainer" class="data-list"></div>
     </div>
     <div class="data-container">
-      <h2><span class="heart">❤️</span> Steps Taken Data</h2>
+      <h2>Steps Taken Data</h2>
       <div id="stepsTakenContainer" class="data-list"></div>
     </div>
     <div class="data-container">
-      <h2><span class="heart">❤️</span> Sleep Hours Data</h2>
+      <h2>Sleep Hours Data</h2>
       <div id="sleepHoursContainer" class="data-list"></div>
     </div>
   </div>
@@ -183,9 +165,9 @@
 
       for (const date in logs) {
         const log = logs[date];
-        heartRateContainer.innerHTML += `<p>${date}: ${log.heartRate} BPM</p>`;
-        stepsTakenContainer.innerHTML += `<p>${date}: ${log.stepsTaken} steps</p>`;
-        sleepHoursContainer.innerHTML += `<p>${date}: ${log.sleepHours} hours</p>`;
+        heartRateContainer.innerHTML += <p>${date}: ${log.heartRate} BPM</p>;
+        stepsTakenContainer.innerHTML += <p>${date}: ${log.stepsTaken} steps</p>;
+        sleepHoursContainer.innerHTML += <p>${date}: ${log.sleepHours} hours</p>;
       }
     }
 
