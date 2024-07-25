@@ -130,7 +130,7 @@
       const stepsTaken = document.getElementById('stepsTaken').value;
       const sleepHours = document.getElementById('sleepHours').value;
 
-    if (!date || !heartRate || !stepsTaken || !sleepHours) {
+      if (!date || !heartRate || !stepsTaken || !sleepHours) {
         alert('Please fill in all fields');
         return;
       }
@@ -165,9 +165,9 @@
 
       for (const date in logs) {
         const log = logs[date];
-        heartRateContainer.innerHTML += <p>${date}: ${log.heartRate} BPM</p>;
-        stepsTakenContainer.innerHTML += <p>${date}: ${log.stepsTaken} steps</p>;
-        sleepHoursContainer.innerHTML += <p>${date}: ${log.sleepHours} hours</p>;
+        heartRateContainer.innerHTML += `<p>${date}: ${log.heartRate} BPM</p>`;
+        stepsTakenContainer.innerHTML += `<p>${date}: ${log.stepsTaken} steps</p>`;
+        sleepHoursContainer.innerHTML += `<p>${date}: ${log.sleepHours} hours</p>`;
       }
     }
 
