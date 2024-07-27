@@ -96,17 +96,14 @@
     .log-entry p {
       margin: 0;
     }
-    .delete-btn {
-      background-color: #cc0000;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      padding: 3px 7px;
+    .delete-link {
+      color: #cc0000;
+      text-decoration: underline;
       cursor: pointer;
       font-size: 0.9em;
     }
-    .delete-btn:hover {
-      background-color: #990000;
+    .delete-link:hover {
+      color: #990000;
     }
   </style>
 </head>
@@ -201,17 +198,17 @@
         heartRateContainer.innerHTML += `
           <div class="log-entry">
             <p>${date}: ${log.heartRate} BPM</p>
-            <button class="delete-btn" onclick="deleteLog('${date}')">Delete</button>
+            <span class="delete-link" onclick="deleteLog('${date}')">Delete</span>
           </div>`;
         stepsTakenContainer.innerHTML += `
           <div class="log-entry">
             <p>${date}: ${log.stepsTaken} steps</p>
-            <button class="delete-btn" onclick="deleteLog('${date}')">Delete</button>
+            <span class="delete-link" onclick="deleteLog('${date}')">Delete</span>
           </div>`;
         sleepHoursContainer.innerHTML += `
           <div class="log-entry">
             <p>${date}: ${log.sleepHours} hours</p>
-            <button class="delete-btn" onclick="deleteLog('${date}')">Delete</button>
+            <span class="delete-link" onclick="deleteLog('${date}')">Delete</span>
           </div>`;
       }
     }
