@@ -1,112 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulsePals - Daily Log</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <style>
-    body {
-      font-family: 'Times New Roman', Times, serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      background-image: url('https://www.example.com/pink-hearts.png'); /* Add your pink hearts background image */
-      background-repeat: repeat;
-    }
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-    }
-    .header h1 {
-      font-family: 'Great Vibes', cursive;
-      color: #003366;
-      text-align: center;
-      margin-bottom: 0;
-    }
-    .header h1 span {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 0.6em;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label,
-    .form-group input {
-      display: block;
-      width: 100%;
-    }
-    .form-group label {
-      font-size: 1.1em;
-    }
-    .form-group input {
-      margin-bottom: 10px;
-      font-size: 1.1em;
-      padding: 5px;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #003366;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      text-transform: uppercase;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #001a33;
-    }
-    .message {
-      margin-top: 20px;
-      font-size: 1.1em;
-      color: green;
-      text-align: center;
-    }
-    .data-container {
-      margin-top: 40px;
-    }
-    .data-container h2 {
-      font-family: 'Times New Roman', Times, serif;
-      color: #003366;
-      margin-bottom: 10px;
-      font-size: 1.3em;
-    }
-    .data-list {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-      font-size: 1em;
-    }
-    .log-entry {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .log-entry p {
-      margin: 0;
-    }
-    .delete-link {
-      color: #cc0000;
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-    .delete-link:hover {
-      color: #990000;
-    }
-  </style>
-</head>
 <body>
   <div class="container">
     <div class="header">
@@ -128,8 +19,19 @@
         <input type="number" id="stepsTaken" name="stepsTaken" required>
       </div>
       <div class="form-group">
-        <label for="sleepHours">Sleep Hours:</label>
-        <input type="number" id="sleepHours" name="sleepHours" step="0.1" required>
+        <label for="sleepQuality">Sleep Hours:</label>
+        <input type="number" id="sleepQuality" name="sleepQuality" step="0.1" required>
+      </div>
+      <div class="form-group">
+        <label for="moodSelect">Mood of the Day:</label>
+        <select id="moodSelect" name="moodSelect" required>
+          <option value="Happy">Happy 😊</option>
+          <option value="Sad">Sad 😢</option>
+          <option value="Angry">Angry 😡</option>
+          <option value="Exhausted">Exhausted 😴</option>
+          <option value="Alright">Alright 😐</option>
+          <option value="Excited">Excited 🤩</option>
+        </select>
       </div>
       <button type="submit" class="btn">Save Log</button>
     </form>
@@ -145,8 +47,12 @@
       <div id="stepsTakenContainer" class="data-list"></div>
     </div>
     <div class="data-container">
-      <h2>Sleep Hours Data</h2>
-      <div id="sleepHoursContainer" class="data-list"></div>
+      <h2>Sleep Quality Data</h2>
+      <div id="sleepQualityContainer" class="data-list"></div>
+    </div>
+    <div class="data-container">
+      <h2>Mood of the Day</h2>
+      <div id="moodContainer" class="data-list"></div>
     </div>
   </div>
 
@@ -158,9 +64,10 @@
       const date = document.getElementById('date').value;
       const heartRate = document.getElementById('heartRate').value;
       const stepsTaken = document.getElementById('stepsTaken').value;
-      const sleepHours = document.getElementById('sleepHours').value;
+      const sleepQuality = document.getElementById('sleepQuality').value;
+      const mood = document.getElementById('moodSelect').value;
 
-      if (!date || !heartRate || !stepsTaken || !sleepHours) {
+      if (!date || !heartRate || !stepsTaken || !sleepQuality || !mood) {
         alert('Please fill in all fields');
         return;
       }
@@ -171,7 +78,8 @@
         date: date,
         heartRate: heartRate,
         stepsTaken: stepsTaken,
-        sleepHours: sleepHours
+        sleepQuality: sleepQuality,
+        mood: mood
       };
       localStorage.setItem('dailyLogs', JSON.stringify(logs));
 
@@ -187,11 +95,13 @@
 
       const heartRateContainer = document.getElementById('heartRateContainer');
       const stepsTakenContainer = document.getElementById('stepsTakenContainer');
-      const sleepHoursContainer = document.getElementById('sleepHoursContainer');
+      const sleepQualityContainer = document.getElementById('sleepQualityContainer');
+      const moodContainer = document.getElementById('moodContainer');
 
       heartRateContainer.innerHTML = '';
       stepsTakenContainer.innerHTML = '';
-      sleepHoursContainer.innerHTML = '';
+      sleepQualityContainer.innerHTML = '';
+      moodContainer.innerHTML = '';
 
       for (const date in logs) {
         const log = logs[date];
@@ -205,9 +115,14 @@
             <p>${date}: ${log.stepsTaken} steps</p>
             <span class="delete-link" onclick="deleteLog('${date}')">Delete</span>
           </div>`;
-        sleepHoursContainer.innerHTML += `
+        sleepQualityContainer.innerHTML += `
           <div class="log-entry">
-            <p>${date}: ${log.sleepHours} hours</p>
+            <p>${date}: ${log.sleepQuality} quality</p>
+            <span class="delete-link" onclick="deleteLog('${date}')">Delete</span>
+          </div>`;
+        moodContainer.innerHTML += `
+          <div class="log-entry">
+            <p>${date}: ${log.mood}</p>
             <span class="delete-link" onclick="deleteLog('${date}')">Delete</span>
           </div>`;
       }
@@ -225,6 +140,3 @@
     displayData();
   </script>
 </body>
-</html>
-
-
